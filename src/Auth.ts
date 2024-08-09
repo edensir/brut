@@ -60,14 +60,6 @@ export async function getAccessToken(
     code_verifier: codeVerifier,
   });
 
-  console.log("Token exchange parameters:", {
-    client_id: clientId,
-    grant_type: "authorization_code",
-    code,
-    redirect_uri: "http://localhost:5173/callback",
-    code_verifier: codeVerifier,
-  });
-
   try {
     const response = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
@@ -82,7 +74,6 @@ export async function getAccessToken(
     }
 
     const data = await response.json();
-    console.log("data: ", data);
     localStorage.setItem("access_token", data.access_token);
     return data.access_token;
   } catch (error) {
