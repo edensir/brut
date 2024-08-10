@@ -4,8 +4,11 @@ import TrackInfo from "../TrackInfo";
 import { getAccessToken } from "../../Auth";
 import axios from "axios";
 import Nav from "../Nav";
+import { GlobalStyle } from "../../styles";
 
 function App() {
+  const GlobalStyleProxy: any = GlobalStyle;
+
   const [token, setToken] = useState<string | null>(null);
   const [profile, setProfile] = useState<string | null>(null);
 
@@ -59,12 +62,14 @@ function App() {
   if (!token) {
     return (
       <>
+        <GlobalStyleProxy />
         <Login />
       </>
     );
   } else {
     return (
       <>
+        <GlobalStyleProxy />
         <Nav profile={profile} />
         <TrackInfo />
       </>
