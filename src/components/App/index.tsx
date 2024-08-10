@@ -6,12 +6,14 @@ import axios from "axios";
 import Nav from "../Nav";
 import { GlobalStyle } from "../../styles";
 import { Container, TrackViewer, Side } from "./styles";
+import Sidebar from "../Sidebar";
 
 function App() {
   const GlobalStyleProxy: any = GlobalStyle;
 
   const [token, setToken] = useState<string | null>(null);
   const [profile, setProfile] = useState<string | null>(null);
+  const [playlists, setPlaylists] = useState([]);
 
   const clientId = import.meta.env.VITE_CLIENT_ID;
   const params = new URLSearchParams(window.location.search);
@@ -23,8 +25,9 @@ function App() {
     }
     if (token) {
       getUserInfo();
+      getPlaylists();
     }
-  }, [code, token]); // add token and code as dependencies
+  }, [code, token]);
 
   const getToken = async () => {
     if (code) {
@@ -59,6 +62,28 @@ function App() {
     }
   };
 
+  const getPlaylists = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://api.spotify.com/v1/me/playlists",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      const playlists = data.items.map(
+        ({ name, id }: { name: string; id: string }) => {
+          return { name, id };
+        }
+      );
+      setPlaylists(playlists);
+    } catch (error) {
+      console.error("Error fetching playlists data: ", error);
+    }
+  };
+
   // Conditional rendering based on token
   if (!token) {
     return (
@@ -76,7 +101,9 @@ function App() {
           <TrackViewer>
             <TrackInfo />
           </TrackViewer>
-          <Side />
+          <Side>
+            <Sidebar playlists={playlists} />
+          </Side>
         </Container>
       </>
     );
