@@ -2,11 +2,10 @@ import Select from "react-select";
 
 interface IProps {
   playlists: Array<{ name: string; id: string }>;
+  getTracks: any;
 }
 
-const Sidebar: React.FC<IProps> = ({ playlists }) => {
-  console.log(playlists);
-
+const Sidebar: React.FC<IProps> = ({ playlists, getTracks }) => {
   const styles = {
     menuList: (styles: any) => {
       return {
@@ -24,7 +23,7 @@ const Sidebar: React.FC<IProps> = ({ playlists }) => {
   };
 
   const handleChange = (e: any) => {
-    console.log(e.id);
+    getTracks(e.id);
   };
 
   return (

@@ -9,7 +9,8 @@ export async function redirectToAuthCodeFlow(clientId: string) {
     client_id: clientId,
     response_type: "code",
     redirect_uri: "http://localhost:5173/callback",
-    scope: "user-read-private user-read-email",
+    scope:
+      "user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-recently-played user-top-read playlist-read-private user-library-read streaming",
     code_challenge_method: "S256",
     code_challenge: challenge,
   });

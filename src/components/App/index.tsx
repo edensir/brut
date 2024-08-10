@@ -33,7 +33,7 @@ function App() {
     if (code) {
       try {
         const accessToken = await getAccessToken(clientId, code);
-        console.error("accessToken: ", accessToken);
+        console.log("accessToken: ", accessToken);
         setToken(accessToken);
       } catch (error) {
         console.error("Failed to get access token:", error);
@@ -55,10 +55,10 @@ function App() {
       if (Array.isArray(images) && images.length > 0) {
         setProfile(data?.images[0].url);
       } else {
-        console.error("failed to load profile image");
+        console.error("Failed to load profile image");
       }
     } catch (error) {
-      console.error("error fetching profile data: ", error);
+      console.error("Error fetching profile data: ", error);
     }
   };
 
@@ -84,6 +84,23 @@ function App() {
     }
   };
 
+  const getTracks = async (id: string) => {
+    try {
+      const { data } = await axios.get(
+        `https://api.spotify.com/v1/playlists/${id}/tracks`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching tracks data: ", error);
+    }
+  };
+
   // Conditional rendering based on token
   if (!token) {
     return (
@@ -102,7 +119,7 @@ function App() {
             <TrackInfo />
           </TrackViewer>
           <Side>
-            <Sidebar playlists={playlists} />
+            <Sidebar playlists={playlists} getTracks={getTracks} />
           </Side>
         </Container>
       </>
