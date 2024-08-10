@@ -2,7 +2,7 @@ import { redirectToAuthCodeFlow } from "../../Auth";
 import { NavBar, H1, Button, Profile } from "./styles";
 
 interface IProp {
-  profile?: string;
+  profile?: string | null;
 }
 
 const Nav: React.FC<IProp> = ({ profile }) => {
