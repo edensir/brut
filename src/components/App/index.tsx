@@ -5,6 +5,7 @@ import { getAccessToken } from "../../Auth";
 import axios from "axios";
 import Nav from "../Nav";
 import { GlobalStyle } from "../../styles";
+import { Container, TrackViewer, Side } from "./styles";
 
 function App() {
   const GlobalStyleProxy: any = GlobalStyle;
@@ -29,7 +30,7 @@ function App() {
     if (code) {
       try {
         const accessToken = await getAccessToken(clientId, code);
-        console.log("accessToken: ", accessToken);
+        console.error("accessToken: ", accessToken);
         setToken(accessToken);
       } catch (error) {
         console.error("Failed to get access token:", error);
@@ -71,7 +72,12 @@ function App() {
       <>
         <GlobalStyleProxy />
         <Nav profile={profile} />
-        <TrackInfo />
+        <Container>
+          <TrackViewer>
+            <TrackInfo />
+          </TrackViewer>
+          <Side />
+        </Container>
       </>
     );
   }
