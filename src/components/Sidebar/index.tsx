@@ -1,11 +1,14 @@
 import Select from "react-select";
+import Controls from "../Controls";
 
 interface IProps {
   playlists: Array<{ name: string; id: string }>;
   getTracks: any;
+  token: string | null;
+  tracks: Array<string>;
 }
 
-const Sidebar: React.FC<IProps> = ({ playlists, getTracks }) => {
+const Sidebar: React.FC<IProps> = ({ playlists, getTracks, token, tracks }) => {
   const styles = {
     menuList: (styles: any) => {
       return {
@@ -28,6 +31,7 @@ const Sidebar: React.FC<IProps> = ({ playlists, getTracks }) => {
 
   return (
     <>
+      <Controls token={token} tracks={tracks} />
       <Select
         options={playlists}
         getOptionLabel={(e: any) => e.name}

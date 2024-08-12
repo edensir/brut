@@ -14,6 +14,7 @@ function App() {
   const [token, setToken] = useState<string | null>(null);
   const [profile, setProfile] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState([]);
+  const [tracks, setTracks] = useState<Array<string> | null>(null);
 
   const clientId = import.meta.env.VITE_CLIENT_ID;
   const params = new URLSearchParams(window.location.search);
@@ -95,7 +96,11 @@ function App() {
           },
         }
       );
-      console.log(data);
+      const uris = Object.entries(data.items).map(
+        ([key, val]) => val.track.uri
+      );
+      console.log(uris);
+      setTracks(uris);
     } catch (error) {
       console.error("Error fetching tracks data: ", error);
     }
@@ -119,7 +124,12 @@ function App() {
             <TrackInfo />
           </TrackViewer>
           <Side>
-            <Sidebar playlists={playlists} getTracks={getTracks} />
+            <Sidebar
+              token={token}
+              tracks={tracks}
+              playlists={playlists}
+              getTracks={getTracks}
+            />
           </Side>
         </Container>
       </>
