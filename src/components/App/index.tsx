@@ -15,7 +15,7 @@ function App() {
   const [token, setToken] = useState<string | null>(null);
   const [profile, setProfile] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState([]);
-  const [tracks, setTracks] = useState<Array<string> | null>(null);
+  const [tracks, setTracks] = useState<Array<ITrack> | null>(null); // Adjusted to store track details
   const [track, setTrack] = useState<ITrack | null>(null);
 
   const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -98,11 +98,22 @@ function App() {
           },
         }
       );
-      const uris = Object.entries(data.items).map(
-        ([key, val]) => val.track.uri
-      );
-      console.log(uris);
-      setTracks(uris);
+
+      // Adjusted to store detailed track information
+      const tracks = data.items.map((item: any) => ({
+        uri: item.track.uri,
+        name: item.track.name,
+        album: item.track.album.name,
+        artist: item.track.artists.map((artist: any) => artist.name).join(", "),
+        image: item.track.album.images[0]?.url,
+      }));
+      console.log(tracks);
+      setTracks(tracks);
+
+      // Set the first track as the current track by default (optional)
+      if (tracks.length > 0) {
+        setTrack(tracks[0]);
+      }
     } catch (error) {
       console.error("Error fetching tracks data: ", error);
     }
@@ -123,7 +134,7 @@ function App() {
         <Nav profile={profile} />
         <Container>
           <TrackViewer>
-            <TrackInfo />
+            <TrackInfo track={track} />
           </TrackViewer>
           <Side>
             <Sidebar
@@ -132,6 +143,7 @@ function App() {
               playlists={playlists}
               getTracks={getTracks}
               setTrack={setTrack}
+              track={track}
             />
           </Side>
         </Container>

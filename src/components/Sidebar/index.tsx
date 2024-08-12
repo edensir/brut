@@ -1,6 +1,7 @@
 import Select from "react-select";
 import Controls from "../Controls";
 import { ITrack } from "../../types";
+import TrackImage from "../TrackImage";
 
 interface IProps {
   playlists: Array<{ name: string; id: string }>;
@@ -71,6 +72,7 @@ const Sidebar: React.FC<IProps> = ({
           },
         })}
       />
+      <TrackImage track={track} />
     </>
   );
 };

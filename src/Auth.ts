@@ -11,7 +11,7 @@ export async function redirectToAuthCodeFlow(clientId: string) {
     redirect_uri: "http://localhost:5173/callback",
     //its not showing public playlists or ONLIFE
     scope:
-      "user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-recently-played user-top-read playlist-read-private user-library-read streaming",
+      "user-library-read playlist-read-private user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-recently-played user-top-read playlist-read-private user-library-read streaming",
     code_challenge_method: "S256",
     code_challenge: challenge,
   });
