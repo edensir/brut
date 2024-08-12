@@ -7,6 +7,7 @@ import Nav from "../Nav";
 import { GlobalStyle } from "../../styles";
 import { Container, TrackViewer, Side } from "./styles";
 import Sidebar from "../Sidebar";
+import { ITrack } from "../../types";
 
 function App() {
   const GlobalStyleProxy: any = GlobalStyle;
@@ -15,6 +16,7 @@ function App() {
   const [profile, setProfile] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState([]);
   const [tracks, setTracks] = useState<Array<string> | null>(null);
+  const [track, setTrack] = useState<ITrack | null>(null);
 
   const clientId = import.meta.env.VITE_CLIENT_ID;
   const params = new URLSearchParams(window.location.search);
@@ -129,6 +131,7 @@ function App() {
               tracks={tracks}
               playlists={playlists}
               getTracks={getTracks}
+              setTrack={setTrack}
             />
           </Side>
         </Container>
