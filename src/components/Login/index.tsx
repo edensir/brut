@@ -1,10 +1,20 @@
 import Nav from "../Nav";
+import { Container, Right, Left, P } from "./styles";
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <>
       <Nav></Nav>
-      <p>music player</p>
+      <Container>
+        <Left>
+          <P>music player</P>
+          <P>be online in life</P>
+        </Left>
+        <Right>
+          <P>designed with lurrrv for music and connections</P>
+          <P>* spotify account is required.</P>
+        </Right>
+      </Container>
     </>
   );
 };

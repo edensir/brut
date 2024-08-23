@@ -8,7 +8,7 @@ export const NavBar = styled.header`
   justify-content: space-between;
   background: #ffffff;
   border-bottom: 2px solid #000;
-  padding: 1em 1em 1em 1em;
+  padding: 1em 1em 1em 0;
   box-sizing: border-box;
 `;
 
@@ -16,7 +16,7 @@ export const H1 = styled.h1`
   color: black;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  margin-left: 1em;
+  margin-left: 0.5em;
 `;
 
 interface IProfileProps {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 100vh;
+  height: 87vh;
   width: 100vw;
   overflow: hidden;
 `;
@@ -23,5 +23,4 @@ export const Side = styled.div`
   position: sticky;
   border-left: 2px solid #000;
   padding 0px 10px;
-  background: white;
-`;
+  background: white;`;
