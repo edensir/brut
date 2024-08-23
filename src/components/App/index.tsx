@@ -11,6 +11,8 @@ import { ITrack } from "../../types";
 
 function App() {
   const GlobalStyleProxy: any = GlobalStyle;
+  const apiVersion = "v1";
+  const baseURL = `https://api.spotify.com/${apiVersion}`;
 
   const [token, setToken] = useState<string | null>(null);
   const [profile, setProfile] = useState<string | null>(null);
@@ -46,12 +48,7 @@ function App() {
 
   const getUserInfo = async () => {
     try {
-      const { data } = await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
-        },
-      });
+      const { data } = await axios.get(baseURL + "/me", getApiHeaders(token));
 
       const { images } = data;
 
@@ -68,14 +65,10 @@ function App() {
   const getPlaylists = async () => {
     try {
       const { data } = await axios.get(
-        "https://api.spotify.com/v1/me/playlists",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-type": "application/json",
-          },
-        }
+        baseURL + "/me/playlists",
+        getApiHeaders(token)
       );
+
       const playlists = data.items.map(
         ({ name, id }: { name: string; id: string }) => {
           return { name, id };
@@ -90,13 +83,8 @@ function App() {
   const getTracks = async (id: string) => {
     try {
       const { data } = await axios.get(
-        `https://api.spotify.com/v1/playlists/${id}/tracks`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-type": "application/json",
-          },
-        }
+        `${baseURL}/playlists/${id}/tracks`,
+        getApiHeaders(token)
       );
 
       // Adjusted to store detailed track information
@@ -118,6 +106,13 @@ function App() {
       console.error("Error fetching tracks data: ", error);
     }
   };
+
+  const getApiHeaders = (token: string | null) => ({
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
 
   // Conditional rendering based on token
   if (!token) {
