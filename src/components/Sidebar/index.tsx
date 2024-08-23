@@ -45,6 +45,7 @@ const Sidebar: React.FC<IProps> = ({
       <Controls token={token} tracks={tracks} setTrack={setTrack} />
       <Select
         options={playlists}
+        menuPlacement="auto"
         getOptionLabel={(e: any) => e.name}
         styles={styles}
         onChange={handleChange}

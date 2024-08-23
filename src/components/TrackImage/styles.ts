@@ -8,6 +8,10 @@ export const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 interface IImageProps {
@@ -21,6 +25,10 @@ export const Image = styled.div<IImageProps>`
   background-image: ${(props) => `url(${props.image})`};
   background-size: cover;
   background-position: center;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export default Box;

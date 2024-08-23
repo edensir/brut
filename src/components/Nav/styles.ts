@@ -17,6 +17,12 @@ export const H1 = styled.h1`
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-left: 0.5em;
+
+  @media (max-width: 800px) {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 2em;
+  }
 `;
 
 interface IProfileProps {

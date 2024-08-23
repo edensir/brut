@@ -6,6 +6,10 @@ export const Container = styled.div`
   height: 87vh;
   width: 100vw;
   overflow: hidden;
+  @media (max-width: 800px) {
+  flex-direction: column;
+  max-height: 100vh;
+  
 `;
 
 export const TrackViewer = styled.div`
@@ -14,6 +18,12 @@ export const TrackViewer = styled.div`
   justify-content: space-between;
   background: white;
   min-width: 70vw;
+  min-height: 65vh;
+
+  @media (max-widht: 800px) {
+  font-size: 4vh;
+  width: 90vw;
+  height: 25vh;
 `;
 
 export const Side = styled.div`
@@ -23,4 +33,11 @@ export const Side = styled.div`
   position: sticky;
   border-left: 2px solid #000;
   padding 0px 10px;
-  background: white;`;
+  background: white;
+  
+  @media (max-width: 800px) {
+  font-size: 2vh;
+  min-width: 95vw;
+  height: 30vh;
+  padding: 2vw 2vw;
+  border-left: 0px;`;
