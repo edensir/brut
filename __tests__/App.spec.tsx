@@ -8,7 +8,7 @@ import App from "../src/components/App";
 describe("App healthcheck", () => {
   it("App renders successfully when there isn't a token", () => {
     render(<App />);
-    expect(screen.getByText(/Brut/)).toBeInTheDocument();
+    expect(screen.getByText(/ONLIFE RADIO/)).toBeInTheDocument();
   });
 
   it("App renders successfully when there is a token", async () => {
@@ -26,6 +26,6 @@ describe("App healthcheck", () => {
       </MockParentComponentContext.Provider>
     );
 
-    expect(screen.queryByText(/Brut/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/ONLIFE RADIO/)).not.toBeInTheDocument();
   });
 });

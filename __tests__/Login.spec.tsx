@@ -8,6 +8,6 @@ import Login from "../src/components/Login";
 describe("Login healthcheck", () => {
   it("Login renders successfully", () => {
     render(<Login />);
-    expect(screen.getByText(/Brut/)).toBeInTheDocument();
+    expect(screen.getByText(/ONLIFE RADIO/)).toBeInTheDocument();
   });
 });

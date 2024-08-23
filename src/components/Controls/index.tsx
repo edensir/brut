@@ -3,7 +3,7 @@ import { ITrack, IState } from "../../types";
 
 interface IProps {
   token: string | null;
-  tracks: Array<string>;
+  tracks: ITrack[];
   setTrack: React.Dispatch<React.SetStateAction<ITrack | null>>;
 }
 
@@ -11,11 +11,11 @@ const Controls: React.FC<IProps> = ({ token, tracks, setTrack }) => {
   return (
     <>
       <SpotifyPlayer
-        token={token}
-        uris={tracks}
+        token={token || ""}
+        uris={tracks.map((track) => track.uri)}
         hideCoverArt={true}
         hideAttribution={true}
-        inLineVolume={false}
+        inlineVolume={false}
         styles={{
           trackArtistColor: "#fff",
           trackNameColor: "#fff",

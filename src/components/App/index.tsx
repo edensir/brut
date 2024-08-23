@@ -134,7 +134,7 @@ function App() {
           <Side>
             <Sidebar
               token={token}
-              tracks={tracks}
+              tracks={tracks || []}
               playlists={playlists}
               getTracks={getTracks}
               setTrack={setTrack}

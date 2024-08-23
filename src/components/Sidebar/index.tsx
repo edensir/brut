@@ -7,7 +7,7 @@ interface IProps {
   playlists: Array<{ name: string; id: string }>;
   getTracks: any;
   token: string | null;
-  tracks: Array<string>;
+  tracks: ITrack[];
   track: ITrack | null;
   setTrack: React.Dispatch<React.SetStateAction<ITrack | null>>;
 }

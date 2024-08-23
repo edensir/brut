@@ -1,5 +1,5 @@
 export interface ITrack {
-  artists: [
+  artists?: [
     {
       name: string;
       uri: string;
@@ -7,6 +7,7 @@ export interface ITrack {
   ];
   durationMs: number;
   id: string;
+  artist?: string;
   image: string;
   name: string;
   uri: string;
